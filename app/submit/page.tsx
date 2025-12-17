@@ -24,10 +24,25 @@ const TRACKS = [
   "Environment & Sustainability",
 ]
 
+const GRADES = [
+  "6", "7", "8", "9", "10", "11", "12"
+]
+
 const DIVISIONS = [
   "Junior Division (Grades 6-8)",
   "Open Division (Grades 9-12)",
 ]
+
+// Auto-determine division based on grade
+function getDivisionFromGrade(grade: string): string {
+  const gradeNum = parseInt(grade)
+  if (gradeNum >= 6 && gradeNum <= 8) {
+    return "Junior Division (Grades 6-8)"
+  } else if (gradeNum >= 9 && gradeNum <= 12) {
+    return "Open Division (Grades 9-12)"
+  }
+  return ""
+}
 
 export default function SubmitPage() {
   const router = useRouter()
@@ -38,6 +53,7 @@ export default function SubmitPage() {
   const [formData, setFormData] = useState({
     title: "",
     track: "",
+    grade: "",
     division: "",
     country: "",
     document: null as File | null,
@@ -83,7 +99,7 @@ export default function SubmitPage() {
     // Load existing submission so they can update it
     const { data: existingSubmission } = await supabase
       .from("submissions")
-      .select("title, track, division, country, document_url")
+      .select("title, track, grade, division, country, document_url")
       .eq("user_id", userData.id)
       .maybeSingle()
 
@@ -93,6 +109,7 @@ export default function SubmitPage() {
         ...prev,
         title: existingSubmission.title || "",
         track: existingSubmission.track || "",
+        grade: existingSubmission.grade || "",
         division: existingSubmission.division || "",
         country: existingSubmission.country || "",
         document: null,
@@ -164,6 +181,7 @@ export default function SubmitPage() {
       "Please review:\n" +
       `- Title: ${formData.title}\n` +
       `- Track: ${formData.track}\n` +
+      `- Grade: ${formData.grade}\n` +
       `- Division: ${formData.division}\n` +
       `- Country: ${formData.country}\n\n` +
       "Note: You can update your submission before the deadline (December 27th)."
@@ -220,6 +238,14 @@ export default function SubmitPage() {
         .eq("user_id", user.id)
         .maybeSingle()
 
+      // Ensure division is set from grade if not already set
+      const finalDivision = formData.division || (formData.grade ? getDivisionFromGrade(formData.grade) : "")
+      
+      if (!finalDivision) {
+        alert("Please select your grade first.")
+        return
+      }
+
       let submitError
       if (existingSubmission) {
         // Update existing submission
@@ -228,7 +254,8 @@ export default function SubmitPage() {
           .update({
             title: formData.title,
             track: formData.track,
-            division: formData.division,
+            grade: formData.grade,
+            division: finalDivision,
             country: formData.country || null,
             document_url: documentUrl,
             video_url: null,
@@ -245,7 +272,8 @@ export default function SubmitPage() {
           qualification_id: qualification?.id || null,
           title: formData.title,
           track: formData.track,
-          division: formData.division,
+          grade: formData.grade,
+          division: finalDivision,
           country: formData.country || null,
           document_url: documentUrl,
           video_url: null,
@@ -376,25 +404,33 @@ export default function SubmitPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="division" className="text-base font-medium">
-                      Division *
+                    <Label htmlFor="grade" className="text-base font-medium">
+                      Current Grade *
                     </Label>
                     <Select
-                      value={formData.division}
-                      onValueChange={(value) => setFormData({ ...formData, division: value })}
+                      value={formData.grade}
+                      onValueChange={(value) => {
+                        const division = getDivisionFromGrade(value)
+                        setFormData({ ...formData, grade: value, division })
+                      }}
                       required
                     >
                       <SelectTrigger className="w-full text-base">
-                        <SelectValue placeholder="Select your division" />
+                        <SelectValue placeholder="Select your current grade" />
                       </SelectTrigger>
                       <SelectContent>
-                        {DIVISIONS.map((division) => (
-                          <SelectItem key={division} value={division}>
-                            {division}
+                        {GRADES.map((grade) => (
+                          <SelectItem key={grade} value={grade}>
+                            Grade {grade}
                           </SelectItem>
                         ))}
                       </SelectContent>
                     </Select>
+                    {formData.grade && formData.division && (
+                      <p className="text-sm text-muted-foreground">
+                        You'll be competing in: <strong>{formData.division}</strong>
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
