@@ -41,11 +41,11 @@ export default function SubmitPage() {
     division: "",
     country: "",
     document: null as File | null,
-    documentUrl: "",
   })
   const [pdfValidation, setPdfValidation] = useState<{ isValid: boolean; pageCount: number; error?: string } | null>(null)
   const [validatingPdf, setValidatingPdf] = useState(false)
   const [hasQualification, setHasQualification] = useState(false)
+  const [existingDocumentUrl, setExistingDocumentUrl] = useState<string | null>(null)
 
   useEffect(() => {
     checkAuth()
@@ -88,6 +88,7 @@ export default function SubmitPage() {
       .maybeSingle()
 
     if (existingSubmission) {
+      setExistingDocumentUrl(existingSubmission.document_url || null)
       setFormData((prev) => ({
         ...prev,
         title: existingSubmission.title || "",
@@ -95,7 +96,6 @@ export default function SubmitPage() {
         division: existingSubmission.division || "",
         country: existingSubmission.country || "",
         document: null,
-        documentUrl: existingSubmission.document_url || "",
       }))
     }
 
@@ -114,7 +114,7 @@ export default function SubmitPage() {
       return
     }
 
-    setFormData((prev) => ({ ...prev, document: file, documentUrl: "" })) // Clear Drive link if file is uploaded
+    setFormData((prev) => ({ ...prev, document: file })) // Clear any previous reference-only state
     setPdfValidation(null)
     setValidatingPdf(true)
 
@@ -152,15 +152,9 @@ export default function SubmitPage() {
       return
     }
 
-    // Require either file upload OR Google Drive link
-    if (!formData.document && !formData.documentUrl.trim()) {
-      alert("Please either upload a PDF file or provide a Google Drive link.")
-      return
-    }
-
-    // Validate Google Drive URL format if provided
-    if (formData.documentUrl && !formData.documentUrl.includes("drive.google.com")) {
-      alert("Please provide a valid Google Drive link.")
+    // Require a PDF file (no more Google Drive option)
+    if (!formData.document && !existingDocumentUrl) {
+      alert("Please upload your 1-page PDF document before submitting.")
       return
     }
 
@@ -182,10 +176,11 @@ export default function SubmitPage() {
     setSubmitting(true)
 
     try {
-      let documentUrl = formData.documentUrl.trim() || null
+      // Start from existing document URL (for updates)
+      let documentUrl = existingDocumentUrl
 
-      // Upload document if provided (and not a Drive link)
-      if (formData.document && !formData.documentUrl) {
+      // Upload document if provided
+      if (formData.document) {
         const fileExt = formData.document.name.split(".").pop()
         const fileName = `${Date.now()}.${fileExt}`
         const filePath = `${user.id}/${fileName}`
