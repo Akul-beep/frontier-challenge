@@ -242,9 +242,12 @@ export default function SubmitPage() {
       analytics.submissionCompleted(formData.track, formData.division)
 
       router.push("/dashboard?submitted=true")
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error submitting:", error)
-      alert("There was an error submitting your idea. Please try again.")
+      const message =
+        (error && typeof error === "object" && "message" in error && (error as any).message) ||
+        "There was an error submitting your idea. Please try again."
+      alert(message)
     } finally {
       setSubmitting(false)
     }
