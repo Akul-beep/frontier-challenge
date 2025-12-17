@@ -421,7 +421,7 @@ export function QualificationForm({ userId, onComplete, saveLocally = false }: {
 
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Button
-                  onClick={() => router.push("/login?redirect=/submit")}
+                  onClick={() => router.push("/login?redirect=/submit&mode=signup&from=qualification")}
                   className="flex-1 bg-[#156d95] hover:bg-[#156d95]/90 text-white py-2 text-sm"
                 >
                   Sign Up to Save & Submit

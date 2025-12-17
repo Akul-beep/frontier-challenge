@@ -26,6 +26,15 @@ function LoginForm() {
   const [fullName, setFullName] = useState("")
 
   const redirect = searchParams.get("redirect") || "/dashboard"
+  const initialMode = searchParams.get("mode")
+  const fromQualification = searchParams.get("from") === "qualification"
+
+  // Default to Sign Up when coming from qualification flow
+  useEffect(() => {
+    if (initialMode === "signup" || fromQualification) {
+      setIsSignUp(true)
+    }
+  }, [initialMode, fromQualification])
 
   async function syncLocalQualification(userId: string) {
     try {
