@@ -466,32 +466,6 @@ export default function SubmitPage() {
                     </p>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="documentUrl" className="text-base font-medium">
-                      OR Google Drive Link
-                    </Label>
-                    <Input
-                      id="documentUrl"
-                      type="url"
-                      value={formData.documentUrl}
-                      onChange={(e) => {
-                        setFormData({ ...formData, documentUrl: e.target.value, document: null })
-                        setPdfValidation(null)
-                      }}
-                      placeholder="https://drive.google.com/file/d/..."
-                      className="text-base"
-                      disabled={!!formData.document}
-                    />
-                    <p className="text-sm text-muted-foreground">
-                      Alternatively, share a Google Drive link to your 1-page PDF (make sure it's set to "Anyone with the link can view")
-                    </p>
-                    {formData.documentUrl && (
-                      <div className="text-xs text-blue-600 bg-blue-50 border border-blue-200 rounded-lg p-2 mt-2">
-                        ℹ️ Using Google Drive link. Please ensure your PDF is exactly 1 page.
-                      </div>
-                    )}
-                  </div>
-
                   <div className="flex items-center gap-4 pt-4">
                     <Button
                       type="submit"
