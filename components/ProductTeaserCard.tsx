@@ -29,7 +29,7 @@ export const ProductTeaserCard = () => {
                 className="text-2xl sm:text-3xl lg:text-4xl leading-tight font-bold text-[#202020] mb-4"
                 style={{ fontFamily: "var(--font-figtree), Figtree", fontWeight: 700 }}
               >
-                Launch Your Ideas to Success
+                Where ideas launch and lead
               </h2>
 
               <p
@@ -88,7 +88,7 @@ export const ProductTeaserCard = () => {
           >
             <img
               src="/space-shuttle-launch.gif"
-              alt="Launch your ideas to success"
+              alt="Where ideas launch and lead"
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* Gradient overlay for better text readability and aesthetic */}
