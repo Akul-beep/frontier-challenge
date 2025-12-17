@@ -204,6 +204,15 @@ function DashboardContent() {
                           {new Date(submission.submitted_at).toLocaleDateString()}
                         </p>
                       )}
+                        <Link href="/submit">
+                          <Button
+                            variant="outline"
+                            className="mt-2 w-full"
+                          >
+                            Update Your Submission (before Dec 27)
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </Link>
                     </div>
                   ) : qualification ? (
                     <Link href="/submit">

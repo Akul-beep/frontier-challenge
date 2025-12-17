@@ -73,11 +73,30 @@ export default function SubmitPage() {
       .eq("user_id", userData.id)
       .maybeSingle()
 
-    const localQualification = localStorage.getItem('qualification_completed')
+    const localQualification = localStorage.getItem("qualification_completed")
 
     if (!qualification && !localQualification) {
       router.push("/qualify")
       return
+    }
+
+    // Load existing submission so they can update it
+    const { data: existingSubmission } = await supabase
+      .from("submissions")
+      .select("title, track, division, country, document_url")
+      .eq("user_id", userData.id)
+      .maybeSingle()
+
+    if (existingSubmission) {
+      setFormData((prev) => ({
+        ...prev,
+        title: existingSubmission.title || "",
+        track: existingSubmission.track || "",
+        division: existingSubmission.division || "",
+        country: existingSubmission.country || "",
+        document: null,
+        documentUrl: existingSubmission.document_url || "",
+      }))
     }
 
     setHasQualification(true)
@@ -119,9 +138,14 @@ export default function SubmitPage() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    
-    analytics.submissionStarted()
-    
+
+    // Track submission start (non-blocking)
+    try {
+      analytics.submissionStarted()
+    } catch (err) {
+      console.warn("Analytics submissionStarted error", err)
+    }
+
     // Validate PDF before submission (if file upload, not Drive link)
     if (formData.document && (!pdfValidation || !pdfValidation.isValid)) {
       alert("Please ensure your PDF is exactly 1 page before submitting.")
@@ -238,8 +262,12 @@ export default function SubmitPage() {
 
       if (submitError) throw submitError
 
-      // Track successful submission
-      analytics.submissionCompleted(formData.track, formData.division)
+      // Track successful submission (non-blocking)
+      try {
+        analytics.submissionCompleted(formData.track, formData.division)
+      } catch (err) {
+        console.warn("Analytics submissionCompleted error", err)
+      }
 
       router.push("/dashboard?submitted=true")
     } catch (error: any) {
@@ -247,6 +275,25 @@ export default function SubmitPage() {
       const message =
         (error && typeof error === "object" && "message" in error && (error as any).message) ||
         "There was an error submitting your idea. Please try again."
+
+      // If Supabase actually saved the submission, treat it as success
+      try {
+        if (user) {
+          const { data: existingSubmission } = await supabase
+            .from("submissions")
+            .select("id")
+            .eq("user_id", user.id)
+            .maybeSingle()
+
+          if (existingSubmission) {
+            router.push("/dashboard?submitted=true")
+            return
+          }
+        }
+      } catch (checkError) {
+        console.error("Error checking existing submission after failure:", checkError)
+      }
+
       alert(message)
     } finally {
       setSubmitting(false)
