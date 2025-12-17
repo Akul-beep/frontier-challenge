@@ -240,44 +240,64 @@ export const PortfolioNavbar = () => {
 
           <div className="hidden md:flex items-center gap-3">
             {user ? (
-              <Link
-                href="/dashboard"
-                className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-200"
-                style={{
-                  fontFamily: "Figtree, sans-serif",
-                  fontWeight: "400",
-                }}
-              >
-                Dashboard
-              </Link>
+              <>
+                <Link
+                  href="/dashboard"
+                  className="text-foreground hover:text-primary px-3 py-2 text-sm font-medium transition-colors duration-200"
+                  style={{
+                    fontFamily: "Figtree, sans-serif",
+                    fontWeight: "400",
+                  }}
+                >
+                  Dashboard
+                </Link>
+                <Link
+                  href="/submit"
+                  className="bg-[#156d95] text-white px-4 lg:px-[18px] rounded-full text-sm lg:text-base font-semibold hover:bg-[#156d95]/90 transition-all duration-200 hover:rounded-2xl shadow-sm hover:shadow-md whitespace-nowrap leading-4 py-2.5 lg:py-[15px]"
+                  style={{
+                    fontFamily: "Plus Jakarta Sans, sans-serif",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "Figtree",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Submit / Update Idea
+                  </span>
+                </Link>
+              </>
             ) : (
-              <Link
-                href="/login"
-                className="text-foreground hover:text-primary px-4 py-2 text-sm lg:text-base font-medium transition-colors duration-200 border border-border rounded-full hover:bg-accent/50"
-                style={{
-                  fontFamily: "Figtree, sans-serif",
-                  fontWeight: "500",
-                }}
-              >
-                Login
-              </Link>
+              <>
+                <Link
+                  href="/login"
+                  className="text-foreground hover:text-primary px-4 py-2 text-sm lg:text-base font-medium transition-colors duration-200 border border-border rounded-full hover:bg-accent/50"
+                  style={{
+                    fontFamily: "Figtree, sans-serif",
+                    fontWeight: "500",
+                  }}
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/qualify"
+                  className="bg-[#156d95] text-white px-4 lg:px-[18px] rounded-full text-sm lg:text-base font-semibold hover:bg-[#156d95]/90 transition-all duration-200 hover:rounded-2xl shadow-sm hover:shadow-md whitespace-nowrap leading-4 py-2.5 lg:py-[15px]"
+                  style={{
+                    fontFamily: "Plus Jakarta Sans, sans-serif",
+                  }}
+                >
+                  <span
+                    style={{
+                      fontFamily: "Figtree",
+                      fontWeight: "500",
+                    }}
+                  >
+                    Register Free
+                  </span>
+                </Link>
+              </>
             )}
-            <Link
-              href="/qualify"
-              className="bg-[#156d95] text-white px-4 lg:px-[18px] rounded-full text-sm lg:text-base font-semibold hover:bg-[#156d95]/90 transition-all duration-200 hover:rounded-2xl shadow-sm hover:shadow-md whitespace-nowrap leading-4 py-2.5 lg:py-[15px]"
-              style={{
-                fontFamily: "Plus Jakarta Sans, sans-serif",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "Figtree",
-                  fontWeight: "500",
-                }}
-              >
-                Register Free
-              </span>
-            </Link>
           </div>
 
           <div className="md:hidden">
@@ -356,40 +376,54 @@ export const PortfolioNavbar = () => {
               ))}
               <div className="pt-4 border-t border-border space-y-3">
                 {user ? (
-                  <Link
-                    href="/dashboard"
-                    onClick={closeMobileMenu}
-                    className="block w-full text-left text-foreground hover:text-primary py-3 text-lg font-medium transition-colors duration-200"
-                    style={{
-                      fontFamily: "Figtree, sans-serif",
-                      fontWeight: "400",
-                    }}
-                  >
-                    Dashboard
-                  </Link>
+                  <>
+                    <Link
+                      href="/dashboard"
+                      onClick={closeMobileMenu}
+                      className="block w-full text-left text-foreground hover:text-primary py-3 text-lg font-medium transition-colors duration-200"
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontWeight: "400",
+                      }}
+                    >
+                      Dashboard
+                    </Link>
+                    <Link
+                      href="/submit"
+                      onClick={closeMobileMenu}
+                      className="block w-full bg-[#156d95] text-white px-[18px] py-[15px] rounded-full text-base font-semibold hover:bg-[#156d95]/90 transition-all duration-200 text-center"
+                      style={{
+                        fontFamily: "Plus Jakarta Sans, sans-serif",
+                      }}
+                    >
+                      Submit / Update Idea
+                    </Link>
+                  </>
                 ) : (
-                  <Link
-                    href="/login"
-                    onClick={closeMobileMenu}
-                    className="block w-full text-center text-foreground hover:text-primary py-3 px-4 text-base font-medium transition-colors duration-200 border border-border rounded-full hover:bg-accent/50"
-                    style={{
-                      fontFamily: "Figtree, sans-serif",
-                      fontWeight: "500",
-                    }}
-                  >
-                    Login
-                  </Link>
+                  <>
+                    <Link
+                      href="/login"
+                      onClick={closeMobileMenu}
+                      className="block w-full text-center text-foreground hover:text-primary py-3 px-4 text-base font-medium transition-colors duration-200 border border-border rounded-full hover:bg-accent/50"
+                      style={{
+                        fontFamily: "Figtree, sans-serif",
+                        fontWeight: "500",
+                      }}
+                    >
+                      Login
+                    </Link>
+                    <Link
+                      href="/qualify"
+                      onClick={closeMobileMenu}
+                      className="block w-full bg-[#156d95] text-white px-[18px] py-[15px] rounded-full text-base font-semibold hover:bg-[#156d95]/90 transition-all duration-200 text-center"
+                      style={{
+                        fontFamily: "Plus Jakarta Sans, sans-serif",
+                      }}
+                    >
+                      Register Free
+                    </Link>
+                  </>
                 )}
-                <Link
-                  href="/qualify"
-                  onClick={closeMobileMenu}
-                  className="block w-full bg-[#156d95] text-white px-[18px] py-[15px] rounded-full text-base font-semibold hover:bg-[#156d95]/90 transition-all duration-200 text-center"
-                  style={{
-                    fontFamily: "Plus Jakarta Sans, sans-serif",
-                  }}
-                >
-                  Register Free
-                </Link>
               </div>
             </div>
           </motion.div>
