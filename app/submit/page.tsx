@@ -434,7 +434,7 @@ export default function SubmitPage() {
                           accept=".pdf"
                           onChange={handleDocumentChange}
                           className="cursor-pointer"
-                          disabled={validatingPdf || !!formData.documentUrl}
+                          disabled={validatingPdf}
                         />
                         {validatingPdf && (
                           <div className="flex items-center gap-2 text-sm text-muted-foreground">
