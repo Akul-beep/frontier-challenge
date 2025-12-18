@@ -579,7 +579,7 @@ export function QualificationForm({ userId, onComplete, saveLocally = false }: {
                       {currentQ.question}
                     </h3>
                     <RadioGroup
-                      value={currentAnswer}
+                      value={currentAnswer || ""}
                       onValueChange={(value) =>
                         setAnswers({ ...answers, [currentQ.originalId]: value })
                       }
