@@ -223,3 +223,4 @@ WHERE passed = true
 **Solution:** Run the SQL script in Step 2 to create the table
 
 After this, all future qualification attempts will be tracked properly!
+

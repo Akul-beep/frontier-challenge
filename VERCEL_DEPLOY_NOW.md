@@ -127,3 +127,4 @@ Your website is now live on Vercel with full analytics tracking!
 ## Full Detailed Guide
 
 See `DEPLOY_TO_VERCEL.md` for complete instructions with screenshots and troubleshooting.
+

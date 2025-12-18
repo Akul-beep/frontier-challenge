@@ -198,7 +198,11 @@ export function QualificationForm({ userId, onComplete, saveLocally = false }: {
     }
     
     // Create identifier for anonymous tracking
-    const identifier = btoa(JSON.stringify(mappedAnswers) + Date.now()).substring(0, 32)
+    // Use crypto for truly unique identifier (browser fingerprint + timestamp)
+    const randomComponent = typeof crypto !== 'undefined' && crypto.randomUUID 
+      ? crypto.randomUUID() 
+      : Math.random().toString(36).substring(2) + Date.now().toString(36)
+    const identifier = `anon_${Date.now()}_${randomComponent}`.substring(0, 64)
     
     localStorage.setItem('qualification_answers', JSON.stringify(mappedAnswers))
     // Only mark as completed AND participant if they passed

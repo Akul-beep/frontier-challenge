@@ -13,3 +13,4 @@ CREATE INDEX IF NOT EXISTS idx_submissions_grade ON public.submissions(grade);
 
 -- Update RLS policies (they should already allow INSERT/UPDATE, but verify)
 -- No changes needed to RLS as grade is just another field in the submission
+

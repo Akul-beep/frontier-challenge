@@ -122,3 +122,4 @@ If you completed the qualification but don't see it:
 3. Or there's a JavaScript error in the browser console
 
 Check the browser console (F12) for errors when you complete the qualification!
+
