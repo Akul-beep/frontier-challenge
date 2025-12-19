@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label"
 import { CheckCircle2, Loader2, Save, XCircle, CheckCircle } from "lucide-react"
 import { createClient } from "@/lib/supabase/client"
 import { useRouter } from "next/navigation"
+import Link from "next/link"
 import { analytics } from "@/lib/analytics"
 
 const QUESTIONS = [
@@ -417,16 +418,27 @@ export function QualificationForm({ userId, onComplete, saveLocally = false }: {
             </CardHeader>
 
             <CardContent className="space-y-4">
-              <div className="bg-[#156d95]/5 border border-[#156d95]/20 rounded-lg p-4">
-                <p className="text-sm text-[#666666] font-medium" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
-                  Your participation has been counted. Sign up to save your results and proceed to submission.
+              <div className="bg-gradient-to-r from-[#156d95]/10 to-[#156d95]/5 border-2 border-[#156d95]/30 rounded-xl p-5">
+                <p className="text-base font-bold text-[#202020] mb-3" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                  📋 What's Next?
                 </p>
+                <p className="text-sm text-[#666666] mb-4 leading-relaxed" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                  Your participation has been counted! Now it's time to submit your 1-page idea. Need help? Check out our complete submission guide with all prompts, formatting requirements, and step-by-step instructions.
+                </p>
+                <Link href="/submission-guide">
+                  <Button
+                    variant="outline"
+                    className="w-full border-[#156d95] text-[#156d95] hover:bg-[#156d95]/10 font-medium"
+                  >
+                    📖 View Complete Submission Guide
+                  </Button>
+                </Link>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Button
                   onClick={() => router.push("/login?redirect=/submit&mode=signup&from=qualification")}
-                  className="flex-1 bg-[#156d95] hover:bg-[#156d95]/90 text-white py-2 text-sm"
+                  className="flex-1 bg-[#156d95] hover:bg-[#156d95]/90 text-white py-2 text-sm font-bold"
                 >
                   Sign Up to Save & Submit
                 </Button>
