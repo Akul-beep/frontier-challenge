@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { PortfolioNavbar } from "@/components/PortfolioNavbar"
 import { Footer } from "@/components/Footer"
 import { createClient } from "@/lib/supabase/client"
-import { Loader2, Upload, CheckCircle2, AlertCircle } from "lucide-react"
+import { Loader2, Upload, CheckCircle2, AlertCircle, FileText } from "lucide-react"
 import Link from "next/link"
 import { validatePdfPages } from "@/lib/pdf-validator"
 import { COUNTRIES } from "@/lib/countries"
@@ -356,12 +356,35 @@ export default function SubmitPage() {
                   </CardTitle>
                   <CardDescription className="text-base">
                     {hasQualification && (
-                      <span className="flex items-center gap-2 text-green-600">
+                      <span className="flex items-center gap-2 text-green-600 mb-4">
                         <CheckCircle2 className="h-4 w-4" />
                         Qualification completed! You can now submit your idea.
                       </span>
                     )}
                   </CardDescription>
+                  
+                  {/* Prominent Guide Link */}
+                  <div className="mt-4 p-4 bg-gradient-to-r from-[#156d95]/10 to-[#156d95]/5 border-2 border-[#156d95]/30 rounded-xl">
+                    <div className="flex items-start gap-3">
+                      <FileText className="w-5 h-5 text-[#156d95] flex-shrink-0 mt-0.5" />
+                      <div className="flex-1">
+                        <p className="text-sm font-bold text-[#202020] mb-1" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                          Need help? Check out the complete submission guide
+                        </p>
+                        <p className="text-xs text-[#666666] mb-3" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
+                          Includes all 4 track prompts, formatting requirements, judging criteria, and step-by-step instructions. You can print it or save as PDF.
+                        </p>
+                        <Link href="/submission-guide">
+                          <Button
+                            variant="outline"
+                            className="border-[#156d95] text-[#156d95] hover:bg-[#156d95]/10 text-sm font-medium"
+                          >
+                            View Complete Submission Guide →
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </CardHeader>
 

@@ -215,12 +215,33 @@ function DashboardContent() {
                         </Link>
                     </div>
                   ) : qualification ? (
-                    <Link href="/submit">
-                      <Button className="w-full bg-[#156d95] hover:bg-[#156d95]/90 text-white">
-                        Submit Your Idea
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                    </Link>
+                    <div className="space-y-3">
+                      {/* Prominent Guide Link */}
+                      <div className="p-4 bg-gradient-to-r from-[#156d95]/10 to-[#156d95]/5 border-2 border-[#156d95]/30 rounded-xl">
+                        <p className="text-sm font-bold text-[#202020] mb-2">
+                          📋 Need help getting started?
+                        </p>
+                        <p className="text-xs text-[#666666] mb-3">
+                          Check out the complete submission guide with all prompts, formatting requirements, and step-by-step instructions.
+                        </p>
+                        <Link href="/submission-guide">
+                          <Button
+                            variant="outline"
+                            className="w-full border-[#156d95] text-[#156d95] hover:bg-[#156d95]/10 text-sm"
+                          >
+                            View Submission Guide
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </Link>
+                      </div>
+                      
+                      <Link href="/submit">
+                        <Button className="w-full bg-[#156d95] hover:bg-[#156d95]/90 text-white">
+                          Submit Your Idea
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
+                    </div>
                   ) : (
                     <p className="text-sm text-muted-foreground">
                       Complete qualification first to submit your idea
