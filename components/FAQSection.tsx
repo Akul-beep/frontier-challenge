@@ -25,7 +25,7 @@ const defaultFAQs: FAQItem[] = [
   {
     question: "How do I submit my idea?",
     answer:
-      "Submit your idea as a 1-page written document (PDF or Google Doc link). Submissions are due by December 27th. Detailed submission instructions will be provided after registration.",
+      "Submit your idea as a 1-page written document (PDF or Google Doc link). Submissions are due by January 15th. Detailed submission instructions will be provided after registration.",
   },
   {
     question: "What are the prizes and recognition?",
@@ -35,7 +35,7 @@ const defaultFAQs: FAQItem[] = [
   {
     question: "When is the submission deadline?",
     answer:
-      "Submit your idea anytime before December 27th. Work on your own schedule—no rush, no pressure. After you register, you'll have time to develop and refine your idea. Results and the showcase are published within 48 hours after the submission deadline.",
+      "Submit your idea anytime before January 15th. Work on your own schedule—no rush, no pressure. After you register, you'll have time to develop and refine your idea. Results and the showcase are published within 48 hours after the submission deadline.",
   },
   {
     question: "Can I participate if I'm not in the United States?",

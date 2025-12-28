@@ -17,7 +17,7 @@ export const IntegrationCarousel = () => {
       number: "2",
       icon: FileText,
       title: "Round 2: Choose Track & Submit Your 1-Page Idea",
-      description: "Choose your track (Business, Technology, Society, or Environment). Write a 1-page document answering your track's prompt. Submit by December 27th.",
+      description: "Choose your track (Business, Technology, Society, or Environment). Write a 1-page document answering your track's prompt. Submit by January 15th.",
       color: "from-[#156d95] to-[#156d95]/80",
     },
     {

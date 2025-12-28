@@ -25,7 +25,7 @@ export const KeyFactsSection = () => {
     },
     {
       icon: Calendar,
-      title: "Submit by Dec 27",
+      title: "Submit by Jan 15",
       description: "Work on your schedule",
       highlight: true,
     },

@@ -209,7 +209,7 @@ function DashboardContent() {
                             variant="outline"
                             className="mt-2 w-full"
                           >
-                            Update Your Submission (before Dec 27)
+                            Update Your Submission (before Jan 15)
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Button>
                         </Link>

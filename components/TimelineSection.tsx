@@ -11,8 +11,8 @@ export const TimelineSection = () => {
     },
     {
       title: "Submit Your 1-Page Idea",
-      date: "By December 27",
-      description: "After passing qualification, submit your 1-page document answering your chosen track's prompt. Work on your own schedule—submit anytime before December 27th.",
+      date: "By January 15",
+      description: "After passing qualification, submit your 1-page document answering your chosen track's prompt. Work on your own schedule—submit anytime before January 15th.",
     },
     {
       title: "Results & Top 20–30 Selected",
@@ -50,7 +50,7 @@ export const TimelineSection = () => {
               fontFamily: "var(--font-figtree), Figtree",
             }}
           >
-            <strong className="text-[#202020]">Submit by December 27th.</strong> Don't miss your chance to win national & international awards and get expert mentorship.
+            <strong className="text-[#202020]">Submit by January 15th.</strong> Don't miss your chance to win national & international awards and get expert mentorship.
           </p>
         </div>
 

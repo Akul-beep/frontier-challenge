@@ -184,7 +184,7 @@ export default function SubmitPage() {
       `- Grade: ${formData.grade}\n` +
       `- Division: ${formData.division}\n` +
       `- Country: ${formData.country}\n\n` +
-      "Note: You can update your submission before the deadline (December 27th)."
+      "Note: You can update your submission before the deadline (January 15th)."
     )
 
     if (!confirmed) {

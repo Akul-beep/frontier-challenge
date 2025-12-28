@@ -540,7 +540,7 @@ export function QualificationForm({ userId, onComplete, saveLocally = false }: {
                 Round 1: Qualification Round
               </CardTitle>
               <CardDescription className="text-base">
-                Answer 5 quick questions about pitches and business. Get {MIN_CORRECT_TO_PASS} or more correct to pass. Once you pass, you're a participant and can submit your <strong className="text-[#156d95]">1-page idea</strong> by December 27th. 
+                Answer 5 quick questions about pitches and business. Get {MIN_CORRECT_TO_PASS} or more correct to pass. Once you pass, you're a participant and can submit your <strong className="text-[#156d95]">1-page idea</strong> by January 15th. 
                 <strong className="text-[#156d95]"> Most people pass on their first try!</strong>
               </CardDescription>
             </div>

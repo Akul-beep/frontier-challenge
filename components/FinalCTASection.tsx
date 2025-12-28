@@ -48,7 +48,7 @@ export const FinalCTASection = () => {
               fontFamily: "var(--font-figtree), Figtree",
             }}
           >
-            Submit your 1-page idea by <strong className="text-white font-bold">December 27th</strong>.
+            Submit your 1-page idea by <strong className="text-white font-bold">January 15th</strong>.
           </p>
           
           <p
@@ -57,14 +57,14 @@ export const FinalCTASection = () => {
               fontFamily: "var(--font-figtree), Figtree",
             }}
           >
-            <strong className="text-white font-bold">Round 1:</strong> Qualification (2 min). <strong className="text-white font-bold">Round 2:</strong> Track & submit 1-page idea by Dec 27. <strong className="text-white font-bold">Round 3:</strong> Top 20–30 advance (2-min pitch video). Everyone gets a certificate. Top 3 win cash prizes & <strong className="text-white font-bold">enhanced mentorship</strong>.
+            <strong className="text-white font-bold">Round 1:</strong> Qualification (2 min). <strong className="text-white font-bold">Round 2:</strong> Track & submit 1-page idea by Jan 15. <strong className="text-white font-bold">Round 3:</strong> Top 20–30 advance (2-min pitch video). Everyone gets a certificate. Top 3 win cash prizes & <strong className="text-white font-bold">enhanced mentorship</strong>.
           </p>
 
           {/* Key Points */}
           <div className="flex flex-wrap items-center justify-center gap-6 mb-10 text-white/90">
             <div className="flex items-center gap-2">
               <Clock className="w-5 h-5" />
-              <span style={{ fontFamily: "var(--font-figtree), Figtree" }}>Dec 27 Deadline</span>
+              <span style={{ fontFamily: "var(--font-figtree), Figtree" }}>Jan 15 Deadline</span>
             </div>
             <div className="flex items-center gap-2">
               <Award className="w-5 h-5" />

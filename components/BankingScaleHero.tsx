@@ -80,7 +80,7 @@ export const BankingScaleHero = () => {
             </div>
             <div className="flex flex-col items-center p-4 rounded-xl bg-gradient-to-br from-[#156d95]/5 to-transparent border border-[#156d95]/10">
               <Clock className="w-6 h-6 text-[#156d95] mb-2" />
-              <div className="text-2xl font-bold text-[#111A4A] mb-1">Dec 27</div>
+              <div className="text-2xl font-bold text-[#111A4A] mb-1">Jan 15</div>
               <div className="text-xs text-[#666666] text-center">Deadline</div>
             </div>
             <div className="flex flex-col items-center p-4 rounded-xl bg-gradient-to-br from-[#156d95]/5 to-transparent border border-[#156d95]/10">

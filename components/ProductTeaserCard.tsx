@@ -20,7 +20,7 @@ export const ProductTeaserCard = () => {
               {/* Deadline with Countdown beside it - Compact & Perfect */}
               <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-4">
                 <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-[#156d95]/10 text-[#156d95] text-xs sm:text-sm font-semibold border border-[#156d95]/20">
-                  <span className="whitespace-nowrap">Dec 27, 23:59 UTC+0</span>
+                  <span className="whitespace-nowrap">Jan 15, 23:59 UTC+0</span>
                 </div>
                 <CompactCountdown />
               </div>

@@ -112,7 +112,7 @@ export default function SubmissionGuidePage() {
                   Deadline
                 </h3>
                 <p className="text-[#666666]" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
-                  <strong className="text-[#156d95]">December 27, 2024</strong>
+                  <strong className="text-[#156d95]">January 15, 2026</strong>
                 </p>
               </div>
             </div>
@@ -185,7 +185,7 @@ export default function SubmissionGuidePage() {
               {
                 step: "4",
                 title: "Submit Your PDF",
-                description: "Upload your 1-page PDF document through the submission form before December 27th. You can update it anytime before the deadline.",
+                description: "Upload your 1-page PDF document through the submission form before January 15th. You can update it anytime before the deadline.",
               },
               {
                 step: "5",
@@ -404,7 +404,7 @@ export default function SubmissionGuidePage() {
             className="text-xl mb-8 opacity-90"
             style={{ fontFamily: "var(--font-figtree), Figtree" }}
           >
-            Sign up and submit your 1-page idea before December 27th.
+            Sign up and submit your 1-page idea before January 15th.
           </p>
           <Link href="/submit">
             <Button

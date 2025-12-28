@@ -31,7 +31,7 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: "Frontier Challenge",
-  description: "Submit by December 27th. Win national & international awards. Get mentorship from Princeton freshman & Diamond Challenge finalist. Featured in global showcase. Free to participate. Perfect for portfolio building.",
+  description: "Submit by January 15th. Win national & international awards. Get mentorship from Princeton freshman & Diamond Challenge finalist. Featured in global showcase. Free to participate. Perfect for portfolio building.",
   generator: "Next.js",
   icons: {
     icon: "/logo.jpeg",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "Frontier Challenge",
-    description: "Submit by December 27th. Win national & international awards. Get Ivy League mentorship. Featured in global showcase. Free to participate.",
+    description: "Submit by January 15th. Win national & international awards. Get Ivy League mentorship. Featured in global showcase. Free to participate.",
     type: "website",
   },
 }

@@ -16,8 +16,8 @@ export function CompactCountdown() {
   useEffect(() => {
     setMounted(true)
     
-    // Deadline: December 27, 2025, 23:59:59 UTC
-    const deadline = new Date("2025-12-27T23:59:59.000Z")
+    // Deadline: January 15, 2026, 23:59:59 UTC
+    const deadline = new Date("2026-01-15T23:59:59.000Z")
 
     const calculateTimeLeft = () => {
       const now = new Date()

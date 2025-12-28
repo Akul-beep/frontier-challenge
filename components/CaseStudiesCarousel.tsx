@@ -72,7 +72,7 @@ export const CaseStudiesCarousel = () => {
             className="text-lg sm:text-xl leading-7 text-foreground max-w-3xl mx-auto px-4 mb-6 font-semibold"
             style={{ fontFamily: "var(--font-figtree), Figtree" }}
           >
-            After Round 1, choose your track & submit 1-page idea. <strong className="text-[#156d95]">Everyone gets a certificate.</strong> Top 20–30 advance to Round 3 (2-min pitch video). Pick one track. Clear prompts. Submit by Dec 27. <strong className="text-foreground">No coding. No teams. Just ideas.</strong>
+            After Round 1, choose your track & submit 1-page idea. <strong className="text-[#156d95]">Everyone gets a certificate.</strong> Top 20–30 advance to Round 3 (2-min pitch video). Pick one track. Clear prompts. Submit by Jan 15. <strong className="text-foreground">No coding. No teams. Just ideas.</strong>
           </p>
         </div>
 

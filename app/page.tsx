@@ -86,7 +86,7 @@ function HomePageContent() {
                 fontFamily: "var(--font-figtree), Figtree",
               }}
             >
-              Mark your calendar. Work at your own pace. Submit by December 27th.
+              Mark your calendar. Work at your own pace. Submit by January 15th.
             </p>
           </div>
 
@@ -96,7 +96,7 @@ function HomePageContent() {
                 Submission Deadline
               </div>
               <div className="text-3xl font-bold text-[#156d95] mb-2" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
-                December 27
+                January 15
               </div>
               <div className="text-sm text-[#666666]" style={{ fontFamily: "var(--font-figtree), Figtree" }}>
                 Submit your 1-page idea
