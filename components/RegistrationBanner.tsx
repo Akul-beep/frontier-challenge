@@ -23,7 +23,7 @@ export const RegistrationBanner = () => {
                   fontFamily: "var(--font-figtree), Figtree",
                 }}
               >
-                <span className="bg-yellow-300/20 px-2 py-0.5 rounded font-bold mr-2">⚡ Deadline Extended!</span>
+                <span className="bg-yellow-400/30 text-yellow-100 px-2 py-0.5 rounded font-bold mr-2 animate-pulse">⚡ Deadline Extended!</span>
                 Submit by January 15th
               </span>
             </div>
