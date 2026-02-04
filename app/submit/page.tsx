@@ -389,169 +389,44 @@ export default function SubmitPage() {
               </CardHeader>
 
               <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label htmlFor="title" className="text-base font-medium">
-                      Project Title *
-                    </Label>
-                    <Input
-                      id="title"
-                      value={formData.title}
-                      onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      placeholder="Enter your project title"
-                      required
-                      className="text-base"
-                    />
+                <div className="space-y-4">
+                  <div className="rounded-lg border border-yellow-200 bg-yellow-50 p-4 text-sm text-yellow-900">
+                    <p className="font-semibold mb-1">
+                      Round 1 submissions are now closed.
+                    </p>
+                    <p className="text-xs text-yellow-900/90">
+                      You can no longer create or update your 1-page PDF submission. Your existing Round 1 submission (if any) is safely stored and will be used for results.
+                    </p>
                   </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="track" className="text-base font-medium">
-                      Track *
-                    </Label>
-                    <Select
-                      value={formData.track}
-                      onValueChange={(value) => setFormData({ ...formData, track: value })}
-                      required
-                    >
-                      <SelectTrigger className="w-full text-base">
-                        <SelectValue placeholder="Select a track" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {TRACKS.map((track) => (
-                          <SelectItem key={track} value={track}>
-                            {track}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="grade" className="text-base font-medium">
-                      Current Grade *
-                    </Label>
-                    <Select
-                      value={formData.grade}
-                      onValueChange={(value) => {
-                        const division = getDivisionFromGrade(value)
-                        setFormData({ ...formData, grade: value, division })
-                      }}
-                      required
-                    >
-                      <SelectTrigger className="w-full text-base">
-                        <SelectValue placeholder="Select your current grade" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        {GRADES.map((grade) => (
-                          <SelectItem key={grade} value={grade}>
-                            Grade {grade}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    {formData.grade && formData.division && (
-                      <p className="text-sm text-muted-foreground">
-                        You'll be competing in: <strong>{formData.division}</strong>
+                  {existingDocumentUrl ? (
+                    <div className="space-y-2 text-sm text-muted-foreground">
+                      <p>
+                        We have your Round 1 submission on file. You can view your status any time on your dashboard.
                       </p>
-                    )}
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="country" className="text-base font-medium">
-                      Country *
-                    </Label>
-                    <Select
-                      value={formData.country}
-                      onValueChange={(value) => setFormData({ ...formData, country: value })}
-                      required
-                    >
-                      <SelectTrigger className="w-full text-base">
-                        <SelectValue placeholder="Select your country" />
-                      </SelectTrigger>
-                      <SelectContent className="max-h-[300px]">
-                        {COUNTRIES.map((country) => (
-                          <SelectItem key={country} value={country}>
-                            {country}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <p className="text-sm text-muted-foreground">
-                      Required for National Recognition Awards eligibility.
-                    </p>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="document" className="text-base font-medium">
-                      1-Page Document (PDF) *
-                    </Label>
-                    <div className="space-y-3">
-                      <div className="flex items-center gap-4">
-                        <Input
-                          id="document"
-                          type="file"
-                          accept=".pdf"
-                          onChange={handleDocumentChange}
-                          className="cursor-pointer"
-                          disabled={validatingPdf}
-                        />
-                        {validatingPdf && (
-                          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                            <Loader2 className="h-4 w-4 animate-spin" />
-                            Validating PDF...
-                          </div>
-                        )}
-                      </div>
-                      {formData.document && pdfValidation?.isValid && (
-                        <div className="flex items-center gap-2 text-sm text-green-600 bg-green-50 border border-green-200 rounded-lg p-3">
-                          <CheckCircle2 className="h-4 w-4" />
-                          <span>✓ PDF is exactly 1 page - Ready to submit!</span>
-                        </div>
-                      )}
-                      {pdfValidation && !pdfValidation.isValid && (
-                        <div className="flex items-start gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">
-                          <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                          <div>
-                            <p className="font-medium">{pdfValidation.error}</p>
-                            <p className="text-xs text-red-500 mt-1">
-                              Please compress your document to exactly 1 page and try again.
-                            </p>
-                          </div>
-                        </div>
-                      )}
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => router.push("/dashboard")}
+                      >
+                        Go to Dashboard
+                      </Button>
                     </div>
-                    <p className="text-sm text-muted-foreground">
-                      Upload your 1-page project document (PDF format only). We verify it's exactly 1 page.
-                    </p>
-                  </div>
-
-                  <div className="flex items-center gap-4 pt-4">
-                    <Button
-                      type="submit"
-                      disabled={submitting || (formData.document && !pdfValidation?.isValid)}
-                      className="px-8 bg-[#156d95] hover:bg-[#156d95]/90 text-white"
-                    >
-                      {submitting ? (
-                        <>
-                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          <Upload className="mr-2 h-4 w-4" />
-                          Submit Idea
-                        </>
-                      )}
-                    </Button>
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => router.back()}
-                    >
-                      Cancel
-                    </Button>
-                  </div>
-                </form>
+                  ) : (
+                    <div className="space-y-2 text-sm text-muted-foreground">
+                      <p>
+                        The Round 1 submission window has ended. New submissions are no longer being accepted.
+                      </p>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        onClick={() => router.push("/dashboard")}
+                      >
+                        Go to Dashboard
+                      </Button>
+                    </div>
+                  )}
+                </div>
               </CardContent>
             </Card>
           </motion.div>

@@ -60,7 +60,7 @@ export default function Round2Page() {
 
     // Require that they have advanced to pre-final round
     if (existingSubmission.prefinal_status !== "advanced") {
-      setError("You currently do not have access to the Round 2 pitch form.")
+      setError("You currently do not have access to the Round 2 pitch form. Only participants who advanced from Round 1 can submit a pitch.")
       setSubmission(existingSubmission)
       setLoading(false)
       return
@@ -68,7 +68,7 @@ export default function Round2Page() {
 
     // Require that Round 2 payment is marked as complete
     if (!existingSubmission.round2_paid) {
-      setError("We are still processing your Round 2 payment. Once your payment is confirmed, you will see the pitch submission form here.")
+      setError("We are still processing your Round 2 payment. Payments must be completed by 13 February 2026. Once your payment is confirmed, you will see the Round 2 pitch submission form here between 13–20 February 2026.")
       setSubmission(existingSubmission)
       setLoading(false)
       return
@@ -186,6 +186,19 @@ export default function Round2Page() {
               </CardHeader>
 
               <CardContent>
+                <div className="mb-4 rounded-lg border border-blue-200 bg-blue-50 p-3 text-xs text-blue-800">
+                  <p className="font-semibold mb-1">
+                    Important dates
+                  </p>
+                  <ul className="list-disc list-inside space-y-0.5">
+                    <li>Payment deadline: 13 February 2026</li>
+                    <li>Round 2 pitch submission window: 13–20 February 2026</li>
+                  </ul>
+                  <p className="mt-1">
+                    If your payment is completed by 13 February 2026, your Round 2 access will be confirmed and you&apos;ll be able to submit your pitch between 13–20 February 2026.
+                  </p>
+                </div>
+
                 {error && (
                   <div className="mb-4 flex items-start gap-2 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
                     <AlertCircle className="h-4 w-4 mt-0.5 flex-shrink-0" />
@@ -194,86 +207,111 @@ export default function Round2Page() {
                 )}
 
                 {submission && submission.prefinal_status === "advanced" && submission.round2_paid ? (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="driveLink" className="text-base font-medium">
-                        Google Drive Link to 2-Minute Pitch Video *
-                      </Label>
-                      <Input
-                        id="driveLink"
-                        value={driveLink}
-                        onChange={(e) => setDriveLink(e.target.value)}
-                        placeholder="https://drive.google.com/..."
-                        required
-                        className="text-base"
-                      />
-                      <p className="text-xs text-muted-foreground mt-1">
-                        Upload your video to Google Drive, set sharing to &quot;Anyone with the link can view&quot;,
-                        then paste the link here.
-                      </p>
-                    </div>
+                  (() => {
+                    const now = new Date()
+                    const openDate = new Date("2026-02-13T00:00:00.000Z")
+                    const closeDate = new Date("2026-02-20T23:59:59.999Z")
 
-                    <div className="space-y-3 text-sm">
-                      <label className="flex items-start gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="mt-1 h-4 w-4"
-                          checked={shareConfirmed}
-                          onChange={(e) => setShareConfirmed(e.target.checked)}
-                        />
-                        <span>
-                          I have set the Google Drive file sharing to{" "}
-                          <strong>“Anyone with the link can view”</strong>.
-                        </span>
-                      </label>
-                      <label className="flex items-start gap-2 cursor-pointer">
-                        <input
-                          type="checkbox"
-                          className="mt-1 h-4 w-4"
-                          checked={incognitoConfirmed}
-                          onChange={(e) => setIncognitoConfirmed(e.target.checked)}
-                        />
-                        <span>
-                          I have opened the link in an <strong>incognito/private window</strong> and confirmed it works.
-                        </span>
-                      </label>
-                    </div>
+                    if (now < openDate) {
+                      return (
+                        <p className="text-sm text-muted-foreground">
+                          Your Round 2 access is confirmed. The pitch submission form will open on <strong>13 February 2026</strong>.
+                          Please return between <strong>13–20 February 2026</strong> to submit your 2-minute pitch video.
+                        </p>
+                      )
+                    }
 
-                    <div className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-xs text-blue-800 flex items-start gap-2">
-                      <ExternalLink className="h-3.5 w-3.5 mt-0.5 flex-shrink-0" />
-                      <p>
-                        Tip: On Google Drive, click &quot;Share&quot; → &quot;Anyone with the link&quot; →
-                        &quot;Viewer&quot; before copying your link.
-                      </p>
-                    </div>
+                    if (now > closeDate) {
+                      return (
+                        <p className="text-sm text-muted-foreground">
+                          The Round 2 pitch submission window (13–20 February 2026) is now closed. Thank you for participating.
+                        </p>
+                      )
+                    }
 
-                    <div className="flex items-center gap-4 pt-4">
-                      <Button
-                        type="submit"
-                        disabled={submitting}
-                        className="px-8 bg-[#156d95] hover:bg-[#156d95]/90 text-white"
-                      >
-                        {submitting ? (
-                          <>
-                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            Submitting...
-                          </>
-                        ) : (
-                          <>
-                            <CheckCircle2 className="mr-2 h-4 w-4" />
-                            Submit Round 2 Pitch
-                          </>
-                        )}
-                      </Button>
-                      <Button
-                        type="button"
-                        variant="outline"
-                        onClick={() => router.push("/dashboard")}
-                      >
-                        Back to Dashboard
-                      </Button>
-                    </div>
-                  </form>
+                    return (
+                      <form onSubmit={handleSubmit} className="space-y-6">
+                        <div className="space-y-2">
+                          <Label htmlFor="driveLink" className="text-base font-medium">
+                            Google Drive Link to 2-Minute Pitch Video *
+                          </Label>
+                          <Input
+                            id="driveLink"
+                            value={driveLink}
+                            onChange={(e) => setDriveLink(e.target.value)}
+                            placeholder="https://drive.google.com/..."
+                            required
+                            className="text-base"
+                          />
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Upload your video to Google Drive, set sharing to &quot;Anyone with the link can view&quot;,
+                            then paste the link here.
+                          </p>
+                        </div>
+
+                        <div className="space-y-3 text-sm">
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="mt-1 h-4 w-4"
+                              checked={shareConfirmed}
+                              onChange={(e) => setShareConfirmed(e.target.checked)}
+                            />
+                            <span>
+                              I have set the Google Drive file sharing to{" "}
+                              <strong>“Anyone with the link can view”</strong>.
+                            </span>
+                          </label>
+                          <label className="flex items-start gap-2 cursor-pointer">
+                            <input
+                              type="checkbox"
+                              className="mt-1 h-4 w-4"
+                              checked={incognitoConfirmed}
+                              onChange={(e) => setIncognitoConfirmed(e.target.checked)}
+                            />
+                            <span>
+                              I have opened the link in an <strong>incognito/private window</strong> and confirmed it works.
+                            </span>
+                          </label>
+                        </div>
+
+                        <div className="rounded-lg border border-blue-200 bg-blue-50 px-3 py-2 text-xs text-blue-800 flex items-start gap-2">
+                          <ExternalLink className="h-3.5 w-3.5 mt-0.5 flex-shrink-0" />
+                          <p>
+                            Tip: On Google Drive, click &quot;Share&quot; → &quot;Anyone with the link&quot; →
+                            &quot;Viewer&quot; before copying your link.
+                          </p>
+                        </div>
+
+                        <div className="flex items-center gap-4 pt-4">
+                          <Button
+                            type="submit"
+                            disabled={submitting}
+                            className="px-8 bg-[#156d95] hover:bg-[#156d95]/90 text-white"
+                          >
+                            {submitting ? (
+                              <>
+                                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                Submitting...
+                              </>
+                            ) : (
+                              <>
+                                <CheckCircle2 className="mr-2 h-4 w-4" />
+                                Submit Round 2 Pitch
+                              </>
+                            )}
+                          </Button>
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={() => router.push("/dashboard")}
+                          >
+                            Back to Dashboard
+                          </Button>
+                        </div>
+                      </form>
+                    )
+                  })()
                 ) : (
                   !error && (
                     <p className="text-sm text-muted-foreground">

@@ -276,15 +276,20 @@ function DashboardContent() {
                         </div>
                       )}
 
-                      <Link href="/submit">
-                        <Button
-                          variant="outline"
-                          className="mt-3 w-full"
-                        >
-                          Update Your Submission
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                      </Link>
+                      <div className="mt-3 space-y-1">
+                        <Link href="/submit">
+                          <Button
+                            variant="outline"
+                            className="w-full"
+                          >
+                            View Your Round 1 Submission
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                        </Link>
+                        <p className="text-xs text-muted-foreground">
+                          Round 1 submissions are now closed. You can review your details, but edits are no longer allowed.
+                        </p>
+                      </div>
                     </div>
                   ) : qualification ? (
                     <div className="space-y-3">
