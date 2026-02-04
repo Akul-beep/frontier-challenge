@@ -175,10 +175,10 @@ function DashboardContent() {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2">
                     <FileText className="h-5 w-5 text-[#156d95]" />
-                    Submission
+                    Submission & Results
                   </CardTitle>
                   <CardDescription>
-                    Submit your 1-page document and idea
+                    Track your 1-page submission and round results
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -197,22 +197,94 @@ function DashboardContent() {
                           <span className="text-sm font-medium">Track:</span>
                           <span className="text-sm">{submission.track}</span>
                         </div>
+                        {submission.division && (
+                          <div className="flex items-center justify-between">
+                            <span className="text-sm font-medium">Division:</span>
+                            <span className="text-sm">{submission.division}</span>
+                          </div>
+                        )}
                       </div>
+
                       {submission.submitted_at && (
                         <p className="text-xs text-muted-foreground">
                           Submitted on{" "}
                           {new Date(submission.submitted_at).toLocaleDateString()}
                         </p>
                       )}
-                        <Link href="/submit">
-                          <Button
-                            variant="outline"
-                            className="mt-2 w-full"
-                          >
-                            Update Your Submission (before Jan 15)
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Button>
-                        </Link>
+
+                      {/* Round 1 / pre-final result */}
+                      {submission.prefinal_status && (
+                        <div className="mt-2 rounded-lg border px-3 py-2 bg-muted/50">
+                          <p className="text-xs font-semibold text-muted-foreground mb-1">
+                            Round 1 Result
+                          </p>
+                          {submission.prefinal_status === "advanced" && (
+                            <p className="text-sm font-medium text-green-700">
+                              You have advanced to the Pre-Final Round. 🎉
+                            </p>
+                          )}
+                          {submission.prefinal_status === "not_advanced" && (
+                            <p className="text-sm font-medium text-red-700">
+                              Thank you for participating. You have not advanced to the Pre-Final Round.
+                            </p>
+                          )}
+                          {submission.prefinal_status === "pending" && (
+                            <p className="text-sm text-muted-foreground">
+                              Your Round 1 submission is still under review.
+                            </p>
+                          )}
+                        </div>
+                      )}
+
+                      {/* Round 2 pitch status */}
+                      {submission.prefinal_status === "advanced" && (
+                        <div className="mt-2 rounded-lg border px-3 py-2 bg-[#156d95]/5 border-[#156d95]/30">
+                          <p className="text-xs font-semibold text-[#156d95] mb-1">
+                            Round 2: Pitch Video
+                          </p>
+                          {submission.round2_pitch_url ? (
+                            <div className="space-y-1">
+                              <p className="text-sm font-medium text-[#156d95]">
+                                Your Round 2 pitch has been submitted.
+                              </p>
+                              <p className="text-xs text-muted-foreground break-all">
+                                Link: {submission.round2_pitch_url}
+                              </p>
+                              {submission.round2_submitted_at && (
+                                <p className="text-xs text-muted-foreground">
+                                  Submitted on{" "}
+                                  {new Date(submission.round2_submitted_at).toLocaleDateString()}
+                                </p>
+                              )}
+                            </div>
+                          ) : (
+                            <div className="space-y-2">
+                              <p className="text-sm text-[#156d95]">
+                                You&apos;ve advanced to Round 2. Submit your 2-minute pitch video to complete this round.
+                              </p>
+                              <Link href="/round2">
+                                <Button
+                                  size="sm"
+                                  className="mt-1 bg-[#156d95] hover:bg-[#156d95]/90 text-white w-full"
+                                >
+                                  Submit Round 2 Pitch
+                                  <ArrowRight className="ml-2 h-4 w-4" />
+                                </Button>
+                              </Link>
+                            </div>
+                          )}
+                        </div>
+                      )}
+
+                      <Link href="/submit">
+                        <Button
+                          variant="outline"
+                          className="mt-3 w-full"
+                        >
+                          Update Your Submission
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                      </Link>
                     </div>
                   ) : qualification ? (
                     <div className="space-y-3">
