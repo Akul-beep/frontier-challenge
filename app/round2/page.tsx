@@ -68,7 +68,7 @@ export default function Round2Page() {
 
     // Require that Round 2 payment is marked as complete
     if (!existingSubmission.round2_paid) {
-      setError("We are still processing your Round 2 payment. Payments must be completed by 13 February 2026. Once your payment is confirmed, you will see the Round 2 pitch submission form here between 13–20 February 2026.")
+      setError("We are still processing your Round 2 payment. Payments must be completed by 13 February 2026. Once your payment is confirmed, you will see the Round 2 pitch submission form here between 13–20 February 2026 (all time zones).")
       setSubmission(existingSubmission)
       setLoading(false)
       return
@@ -192,10 +192,10 @@ export default function Round2Page() {
                   </p>
                   <ul className="list-disc list-inside space-y-0.5">
                     <li>Payment deadline: 13 February 2026</li>
-                    <li>Round 2 pitch submission window: 13–20 February 2026</li>
+                    <li>Round 2 pitch submission window: 13–20 February 2026 (closes when it’s 20 Feb everywhere)</li>
                   </ul>
                   <p className="mt-1">
-                    If your payment is completed by 13 February 2026, your Round 2 access will be confirmed and you&apos;ll be able to submit your pitch between 13–20 February 2026.
+                    If your payment is completed by 13 February 2026, your Round 2 access will be confirmed and you&apos;ll be able to submit your pitch between 13–20 February 2026 (all time zones).
                   </p>
                 </div>
 
@@ -210,13 +210,14 @@ export default function Round2Page() {
                   (() => {
                     const now = new Date()
                     const openDate = new Date("2026-02-13T00:00:00.000Z")
-                    const closeDate = new Date("2026-02-20T23:59:59.999Z")
+                    // Close when last timezone has finished Feb 20 (end of Feb 20 UTC-12 ≈ Feb 21 12:00 UTC)
+                    const closeDate = new Date("2026-02-21T11:59:59.999Z")
 
                     if (now < openDate) {
                       return (
                         <p className="text-sm text-muted-foreground">
                           Your Round 2 access is confirmed. The pitch submission form will open on <strong>13 February 2026</strong>.
-                          Please return between <strong>13–20 February 2026</strong> to submit your 2-minute pitch video.
+                          Please return between <strong>13–20 February 2026</strong> (all time zones) to submit your 2-minute pitch video.
                         </p>
                       )
                     }
