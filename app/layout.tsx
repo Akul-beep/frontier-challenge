@@ -3,6 +3,8 @@ import type { Metadata } from "next"
 import { Figtree, Inter, Geist_Mono, Instrument_Serif } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { WorkerConnectMetaNotice } from "@/components/WorkerConnectMetaNotice"
+import { WORKERCONNECT_META_BRANDING } from "@/lib/meta-workerconnect-branding"
 import "./globals.css"
 
 const figtree = Figtree({
@@ -31,7 +33,9 @@ const instrumentSerif = Instrument_Serif({
 
 export const metadata: Metadata = {
   title: "Frontier Challenge",
-  description: "Submit by January 15th. Win national & international awards. Get mentorship from Princeton freshman & Diamond Challenge finalist. Featured in global showcase. Free to participate. Perfect for portfolio building.",
+  description: WORKERCONNECT_META_BRANDING
+    ? "Frontier Challenge — global student competition. Operated by WorkerConnect (Udyam UDYAM-UP-28-0223467). MeriBai by WorkerConnect: https://meribai.in"
+    : "Submit by January 15th. Win national & international awards. Get mentorship from Princeton freshman & Diamond Challenge finalist. Featured in global showcase. Free to participate. Perfect for portfolio building.",
   generator: "Next.js",
   icons: {
     icon: "/logo.jpeg",
@@ -53,6 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${figtree.variable} ${geistMono.variable} ${instrumentSerif.variable} font-sans antialiased`}>
+        <WorkerConnectMetaNotice />
         {children}
         <Analytics />
         <SpeedInsights />

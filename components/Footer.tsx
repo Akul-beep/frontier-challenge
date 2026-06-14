@@ -2,6 +2,12 @@
 import { Github, Twitter, Linkedin, Mail } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
+import {
+  WORKERCONNECT_META_BRANDING,
+  meriBaiUrl,
+  workerConnectLegalName,
+  workerConnectUdyam,
+} from "@/lib/meta-workerconnect-branding"
 
 type FooterLink = {
   label: string
@@ -187,6 +193,17 @@ export const Footer = ({
           transition={{ duration: 0.5, delay: 0.6 }}
           className="pt-8 border-t border-[#e5e5e5]"
         >
+          {WORKERCONNECT_META_BRANDING ? (
+            <p
+              className="mb-4 text-center text-sm text-[#666666]"
+              style={{ fontFamily: "Figtree" }}
+            >
+              Operated by {workerConnectLegalName} (Udyam {workerConnectUdyam}).{" "}
+              <a href={meriBaiUrl} className="underline underline-offset-2 hover:text-[#202020]">
+                MeriBai by {workerConnectLegalName}
+              </a>
+            </p>
+          ) : null}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-[#666666]" style={{ fontFamily: "Figtree" }}>
               {copyright}
